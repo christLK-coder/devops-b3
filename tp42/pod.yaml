@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: my-pod
+  labels:
+    app: myapp
+    tier: front
+spec:
+  containers:
+    - name: nginx-container
+      image: restaurant:1.0.0
+      imagePullPolicy: IfNotPresent
+      ports:
+        - containerPort: 80
