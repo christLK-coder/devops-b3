@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: webapp-config
+  namespace: legeni-dev
+data:
+  APP_ENV: "dev"
+  APP_COLOR: "#d1242f"
+  REDIS_HOST: "redis"
+  REDIS_PORT: "6379"
