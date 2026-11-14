@@ -22,6 +22,16 @@ spec:
                 secretKeyRef: {name: redis-secret, key: REDIS_PASSWORD}
           ports:
             - containerPort: 6379
+          readinessProbe:
+            exec:
+              command: ["sh", "-c", "redis-cli -a \"$REDIS_PASSWORD\" ping | grep PONG"]
+            periodSeconds: 5
+          livenessProbe:
+            tcpSocket: {port: 6379}
+            periodSeconds: 10
+          resources:
+            requests: {cpu: 50m, memory: 32Mi}
+            limits:   {cpu: 200m, memory: 128Mi}
 ---
 apiVersion: v1
 kind: Service
